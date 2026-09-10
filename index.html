@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Absensi Siswa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#eef5fc;
+    color:#173b68;
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+}
+
+.screen.active{
+    display:block;
+}
+
+/* ================= LOGIN ================= */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+    radial-gradient(circle at 10% 15%,#dcecff 0,transparent 25%),
+    radial-gradient(circle at 90% 90%,#c9e2ff 0,transparent 28%),
+    #f5f9fe;
+}
+
+.login-container{
+    width:100%;
+    max-width:430px;
+}
+
+.login-logo{
+    width:110px;
+    height:110px;
+    margin:0 auto 25px;
+    border-radius:30px;
+    background:#d9eaff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+}
+
+.login-title{
+    text-align:center;
+    font-size:28px;
+    font-weight:800;
+    color:#164b86;
+}
+
+.login-subtitle{
+    text-align:center;
+    margin-top:7px;
+    color:#4f6f94;
+    font-size:14px;
+}
+
+.login-card{
+    margin-top:35px;
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 15px 45px rgba(25,73,120,.10);
+}
+
+.input-box{
+    height:55px;
+    border:1px solid #dce5ef;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    margin-bottom:15px;
+}
+
+.input-box span{
+    font-size:20px;
+    margin-right:12px;
+}
+
+.input-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:14px;
+}
+
+.login-btn{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:17px;
+    background:linear-gradient(135deg,#1874dc,#2464c8);
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.forgot{
+    text-align:center;
+    margin-top:20px;
+    color:#1464b8;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#176bd3,#2877d7);
+    color:white;
+    padding:30px 20px 70px;
+    border-radius:0 0 30px 30px;
+}
+
+.header-inner{
+    max-width:900px;
+    margin:auto;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.avatar{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#d9ebff;
+    flex-shrink:0;
+    border:3px solid rgba(255,255,255,.9);
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.greeting h2{
+    font-size:21px;
+}
+
+.greeting p{
+    font-size:13px;
+    opacity:.9;
+    margin-top:4px;
+}
+
+.notification{
+    margin-left:auto;
+    font-size:26px;
+    cursor:pointer;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+    max-width:900px;
+    margin:-40px auto 100px;
+    padding:0 18px;
+}
+
+.attendance-card{
+    background:white;
+    border-radius:23px;
+    padding:23px;
+    box-shadow:0 12px 35px rgba(24,69,115,.10);
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.card-title{
+    font-size:15px;
+    font-weight:700;
+}
+
+.percent{
+    font-size:28px;
+    font-weight:800;
+    color:#174c88;
+}
+
+.progress{
+    width:100%;
+    height:13px;
+    background:#e9eef4;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress-bar{
+    height:100%;
+    width:95%;
+    background:linear-gradient(90deg,#35c978,#43d66e);
+    transition:.4s;
+}
+
+.status-good{
+    margin-top:13px;
+    color:#25a764;
+    font-size:13px;
+    font-weight:600;
+}
+
+.student-card{
+    margin-top:18px;
+    background:white;
+    border-radius:23px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:17px;
+    box-shadow:0 12px 35px rgba(24,69,115,.08);
+}
+
+.student-icon{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#2173d5;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.student-info{
+    font-size:13px;
+    line-height:1.9;
+}
+
+.student-info b{
+    display:inline-block;
+    width:70px;
+}
+
+.menu-title{
+    font-size:20px;
+    font-weight:700;
+    margin:20px 0 13px;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.menu-card{
+    border-radius:20px;
+    padding:24px 15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.menu-card:active{
+    transform:scale(.96);
+}
+
+.menu-icon{
+    font-size:42px;
+    margin-bottom:9px;
+}
+
+.menu-card h4{
+    font-size:14px;
+}
+
+.menu-absensi{
+    background:#e4f2ff;
+}
+
+.menu-riwayat{
+    background:#e9e7ff;
+}
+
+.menu-materi{
+    background:#f0e6ff;
+}
+
+.menu-tugas{
+    background:#fff0df;
+}
+
+.menu-nilai{
+    background:#ddf9e9;
+}
+
+/* ================= NAV ================= */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:75px;
+    background:white;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    align-items:center;
+    border-top:1px solid #e9eef4;
+    box-shadow:0 -5px 20px rgba(0,0,0,.05);
+    z-index:50;
+}
+
+.nav-item{
+    text-align:center;
+    color:#8295a9;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.nav-item div{
+    font-size:23px;
+    margin-bottom:2px;
+}
+
+.nav-item.active{
+    color:#176bd3;
+    font-weight:600;
+}
+
+/* ================= ABSENSI ================= */
+
+.absensi-page{
+    min-height:100vh;
+    background:#f5f9fd;
+    padding-bottom:40px;
+}
+
+.absensi-header{
+    background:linear-gradient(135deg,#176bd3,#2877d7);
+    color:white;
+    height:90px;
+    display:flex;
+    align-items:center;
+    padding:0 20px;
+}
+
+.back{
+    font-size:35px;
+    margin-right:18px;
+    cursor:pointer;
+}
+
+.absensi-header h2{
+    font-size:20px;
+}
+
+.absensi-content{
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+}
+
+.date-card{
+    background:#e8f2ff;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.date-icon{
+    font-size:30px;
+}
+
+.date-card strong{
+    font-size:14px;
+}
+
+.date-card p{
+    color:#617993;
+    font-size:11px;
+    margin-top:3px;
+}
+
+/* ================= BATAS WAKTU ================= */
+
+.time-card{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:20px;
+    box-shadow:0 8px 25px rgba(30,70,110,.06);
+}
+
+.time-title{
+    font-size:13px;
+    font-weight:700;
+}
+
+.time-info{
+    margin-top:7px;
+    font-size:12px;
+    color:#657b95;
+}
+
+.countdown{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:700;
+    color:#176bd3;
+}
+
+/* ================= OPTION ================= */
+
+.option{
+    min-height:82px;
+    border-radius:18px;
+    margin-bottom:14px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    border:2px solid transparent;
+    cursor:pointer;
+}
+
+.option.selected{
+    border-color:#2473d3;
+}
+
+.option.locked{
+    opacity:.5;
+    pointer-events:none;
+}
+
+.option-icon{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+}
+
+.option-info{
+    flex:1;
+}
+
+.option-info h3{
+    font-size:14px;
+}
+
+.option-info p{
+    font-size:11px;
+    color:#71839a;
+    margin-top:3px;
+}
+
+.radio{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    border:2px solid #b9c5d0;
+    position:relative;
+}
+
+.option.selected .radio{
+    border-color:#1269d0;
+}
+
+.option.selected .radio::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:#1269d0;
+    border-radius:50%;
+    left:4px;
+    top:4px;
+}
+
+.hadir{
+    background:#e5f9ef;
+}
+
+.hadir .option-icon{
+    background:#4bc57c;
+    color:white;
+}
+
+.izin{
+    background:#edf5ff;
+}
+
+.izin .option-icon{
+    background:#72a9e9;
+    color:white;
+}
+
+.sakit{
+    background:#fff9e7;
+}
+
+.sakit .option-icon{
+    background:#f3b72e;
+    color:white;
+}
+
+.alpa{
+    background:#fff0f0;
+}
+
+.alpa .option-icon{
+    background:#ed6969;
+    color:white;
+}
+
+.send-btn{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#1670da,#2467cb);
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.send-btn.disabled{
+    background:#aab5c1;
+    cursor:not-allowed;
+}
+
+/* ================= SUCCESS ================= */
+
+.success{
+    display:none;
+    margin-top:17px;
+    padding:17px;
+    border-radius:17px;
+    background:#e2f9ed;
+    color:#23855a;
+}
+
+.success.show{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* ================= RIWAYAT ================= */
+
+.history-page{
+    min-height:100vh;
+    background:#f5f9fd;
+    padding-bottom:100px;
+}
+
+.history-header{
+    height:90px;
+    background:linear-gradient(135deg,#176bd3,#2877d7);
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:0 20px;
+}
+
+.history-header h2{
+    font-size:20px;
+}
+
+.history-content{
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+}
+
+/* SUMMARY */
+
+.summary-card{
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(30,70,110,.08);
+}
+
+.summary-title{
+    font-size:15px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+}
+
+.summary-item{
+    padding:13px 5px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.summary-item b{
+    display:block;
+    font-size:21px;
+}
+
+.summary-item span{
+    font-size:9px;
+}
+
+.sum-hadir{
+    background:#e5f9ef;
+    color:#23855a;
+}
+
+.sum-izin{
+    background:#edf5ff;
+    color:#3976c5;
+}
+
+.sum-sakit{
+    background:#fff9e7;
+    color:#a97600;
+}
+
+.sum-alpa{
+    background:#fff0f0;
+    color:#d65353;
+}
+
+/* HISTORY ITEM */
+
+.history-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.history-item{
+    background:white;
+    border-radius:18px;
+    padding:17px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    box-shadow:0 8px 25px rgba(30,70,110,.07);
+}
+
+.history-icon{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    flex-shrink:0;
+}
+
+.history-info{
+    flex:1;
+}
+
+.history-info h4{
+    font-size:14px;
+}
+
+.history-info p{
+    font-size:11px;
+    color:#71839a;
+    margin-top:4px;
+}
+
+.history-status{
+    font-size:10px;
+    font-weight:700;
+    padding:6px 9px;
+    border-radius:10px;
+}
+
+.status-hadir{
+    background:#e2f8eb;
+    color:#24915b;
+}
+
+.status-izin{
+    background:#e5f0ff;
+    color:#3976c5;
+}
+
+.status-sakit{
+    background:#fff4d9;
+    color:#b27b00;
+}
+
+.status-alpa{
+    background:#ffe7e7;
+    color:#d65353;
+}
+
+.empty-history{
+    background:white;
+    border-radius:20px;
+    padding:45px 20px;
+    text-align:center;
+    color:#7c8da0;
+}
+
+.empty-history .emoji{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.empty-history h3{
+    color:#486582;
+    margin-bottom:5px;
+}
+
+.clear-history{
+    width:100%;
+    height:50px;
+    margin-top:18px;
+    border:none;
+    border-radius:15px;
+    background:#ffe9e9;
+    color:#dc5555;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-page{
+    padding:30px 20px 100px;
+    max-width:700px;
+    margin:auto;
+}
+
+.profile-header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.profile-big-avatar{
+    width:110px;
+    height:110px;
+    margin:auto;
+    border-radius:50%;
+    overflow:hidden;
+    background:#dcecff;
+    border:4px solid white;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.profile-big-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-header h2{
+    margin-top:12px;
+    font-size:21px;
+}
+
+.profile-header p{
+    color:#71839a;
+    font-size:13px;
+}
+
+.profile-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(30,70,110,.08);
+}
+
+.profile-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #edf0f4;
+    font-size:13px;
+}
+
+.profile-row:last-child{
+    border-bottom:none;
+}
+
+.profile-row span{
+    color:#7c8da0;
+}
+
+.logout{
+    width:100%;
+    margin-top:20px;
+    height:52px;
+    border:none;
+    border-radius:15px;
+    background:#ffe9e9;
+    color:#dc5555;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translate(-50%,-100px);
+    background:#173b68;
+    color:white;
+    padding:13px 20px;
+    border-radius:12px;
+    font-size:13px;
+    z-index:100;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:480px){
+
+    .login-title{
+        font-size:25px;
+    }
+
+    .bottom-nav{
+        gap:25px;
+    }
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+
+<!-- =====================================================
+LOGIN
+===================================================== -->
+
+<section id="loginScreen" class="screen active">
+
+<div class="login-page">
+
+<div class="login-container">
+
+<div class="login-logo">
+🎓
+</div>
+
+<h1 class="login-title">
+ABSENSI SISWA
+</h1>
+
+<p class="login-subtitle">
+Disiplin Hari Ini, Sukses Esok Nanti
+</p>
+
+<div class="login-card">
+
+<div class="input-box">
+<span>👤</span>
+<input id="username" type="text" placeholder="Username">
+</div>
+
+<div class="input-box">
+<span>🔒</span>
+<input id="password" type="password" placeholder="Password">
+</div>
+
+<button class="login-btn" onclick="login()">
+LOGIN &nbsp; ❯
+</button>
+
+<div class="forgot"
+onclick="showToast('Hubungi guru/admin untuk reset password.')">
+Lupa Password?
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+DASHBOARD
+===================================================== -->
+
+<section id="dashboardScreen" class="screen">
+
+<header class="header">
+
+<div class="header-inner">
+
+<div class="user-area">
+
+<div class="avatar">
+<img src="photo.jpg" alt="Foto Profil">
+</div>
+
+<div class="greeting">
+<h2>Halo, Rangga!</h2>
+<p>Selamat belajar 👋</p>
+</div>
+
+<div class="notification"
+onclick="showToast('Tidak ada notifikasi baru')">
+🔔
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<div class="dashboard">
+
+<div class="attendance-card">
+
+<div class="card-top">
+
+<div class="card-title">
+KEHADIRAN BULAN INI
+</div>
+
+<div class="percent"
+id="attendancePercent">
+0%
+</div>
+
+</div>
+
+<div class="progress">
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+</div>
+
+<div
+id="attendanceStatus"
+class="status-good">
+✓ Belum ada data
+</div>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="student-icon">
+👤
+</div>
+
+<div class="student-info">
+
+<div><b>Nama</b> : TRI RANGGA</div>
+<div><b>Kelas</b> : XII RPL 1</div>
+<div><b>Sekolah</b> : SMK BM Sinar Husni</div>
+<div><b>NISN</b> : 097388826</div>
+
+</div>
+
+</div>
+
+
+<div class="menu-title">
+Menu Utama
+</div>
+
+
+<div class="menu-grid">
+
+<div class="menu-card menu-absensi"
+onclick="openAbsensi()">
+
+<div class="menu-icon">
+📋
+</div>
+
+<h4>Absensi</h4>
+
+</div>
+
+
+<div class="menu-card menu-riwayat"
+onclick="openHistory()">
+
+<div class="menu-icon">
+🕘
+</div>
+
+<h4>Riwayat Absensi</h4>
+
+</div>
+
+
+<div class="menu-card menu-materi"
+onclick="showToast('Halaman materi sedang disiapkan.')">
+
+<div class="menu-icon">
+📖
+</div>
+
+<h4>Materi</h4>
+
+</div>
+
+
+<div class="menu-card menu-tugas"
+onclick="showToast('Belum ada tugas baru.')">
+
+<div class="menu-icon">
+📝
+</div>
+
+<h4>Tugas</h4>
+
+</div>
+
+
+<div class="menu-card menu-nilai"
+onclick="showToast('Nilai belum tersedia.')">
+
+<div class="menu-icon">
+📊
+</div>
+
+<h4>Nilai</h4>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="bottom-nav">
+
+<div class="nav-item active"
+onclick="openDashboard()">
+
+<div>⌂</div>
+Home
+
+</div>
+
+<div class="nav-item"
+onclick="openAbsensi()">
+
+<div>▣</div>
+Absensi
+
+</div>
+
+<div class="nav-item"
+onclick="openHistory()">
+
+<div>◷</div>
+Riwayat
+
+</div>
+
+<div class="nav-item"
+onclick="openProfile()">
+
+<div>●</div>
+Profil
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ABSENSI
+===================================================== -->
+
+<section id="absensiScreen" class="screen">
+
+<div class="absensi-page">
+
+<header class="absensi-header">
+
+<div class="back"
+onclick="openDashboard()">
+‹
+</div>
+
+<h2>Absensi Hari Ini</h2>
+
+</header>
+
+
+<div class="absensi-content">
+
+
+<div class="date-card">
+
+<div class="date-icon">
+📅
+</div>
+
+<div>
+
+<strong id="tanggal"></strong>
+
+<p>
+Pilih status kehadiran kamu hari ini
+</p>
+
+</div>
+
+</div>
+
+
+<div class="time-card">
+
+<div class="time-title">
+⏰ BATAS WAKTU ABSENSI
+</div>
+
+<div class="time-info">
+Absensi dibuka pukul <b>06:00</b> dan ditutup pukul <b>08:00</b>.
+</div>
+
+<div
+id="countdown"
+class="countdown">
+Memeriksa waktu...
+</div>
+
+</div>
+
+
+<!-- HADIR -->
+
+<div class="option hadir selected"
+onclick="selectAttendance(this,'Hadir')">
+
+<div class="option-icon">
+✓
+</div>
+
+<div class="option-info">
+
+<h3>Hadir</h3>
+
+<p>Saya hadir di sekolah</p>
+
+</div>
+
+<div class="radio"></div>
+
+</div>
+
+
+<!-- IZIN -->
+
+<div class="option izin"
+onclick="selectAttendance(this,'Izin')">
+
+<div class="option-icon">
+◷
+</div>
+
+<div class="option-info">
+
+<h3>Izin</h3>
+
+<p>Saya tidak bisa hadir karena izin</p>
+
+</div>
+
+<div class="radio"></div>
+
+</div>
+
+
+<!-- SAKIT -->
+
+<div class="option sakit"
+onclick="selectAttendance(this,'Sakit')">
+
+<div class="option-icon">
+❤
+</div>
+
+<div class="option-info">
+
+<h3>Sakit</h3>
+
+<p>Saya tidak bisa hadir karena sakit</p>
+
+</div>
+
+<div class="radio"></div>
+
+</div>
+
+
+<!-- ALPA -->
+
+<div class="option alpa"
+onclick="selectAttendance(this,'Alpa')">
+
+<div class="option-icon">
+×
+</div>
+
+<div class="option-info">
+
+<h3>Alpa</h3>
+
+<p>Saya tidak hadir tanpa keterangan</p>
+
+</div>
+
+<div class="radio"></div>
+
+</div>
+
+
+<button
+id="sendBtn"
+class="send-btn"
+onclick="sendAttendance()">
+
+➤ &nbsp; Kirim Absensi
+
+</button>
+
+
+<div
+id="success"
+class="success">
+
+<div style="font-size:25px">
+✓
+</div>
+
+<div>
+
+<h4>Absensi berhasil!</h4>
+
+<p>
+Data absensi telah disimpan.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+RIWAYAT
+===================================================== -->
+
+<section id="historyScreen" class="screen">
+
+<div class="history-page">
+
+<header class="history-header">
+
+<div class="back"
+onclick="openDashboard()">
+‹
+</div>
+
+<h2>Riwayat Absensi</h2>
+
+</header>
+
+
+<div class="history-content">
+
+
+<div class="summary-card">
+
+<div class="summary-title">
+📊 Rekap Absensi
+</div>
+
+<div class="summary-grid">
+
+<div class="summary-item sum-hadir">
+
+<b id="totalHadir">
+0
+</b>
+
+<span>
+HADIR
+</span>
+
+</div>
+
+
+<div class="summary-item sum-izin">
+
+<b id="totalIzin">
+0
+</b>
+
+<span>
+IZIN
+</span>
+
+</div>
+
+
+<div class="summary-item sum-sakit">
+
+<b id="totalSakit">
+0
+</b>
+
+<span>
+SAKIT
+</span>
+
+</div>
+
+
+<div class="summary-item sum-alpa">
+
+<b id="totalAlpa">
+0
+</b>
+
+<span>
+ALPA
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="historyList"
+class="history-list">
+</div>
+
+
+<button
+class="clear-history"
+onclick="clearHistory()">
+
+🗑️ Hapus Semua Riwayat
+
+</button>
+
+
+</div>
+
+
+<div class="bottom-nav">
+
+<div class="nav-item"
+onclick="openDashboard()">
+
+<div>⌂</div>
+Home
+
+</div>
+
+<div class="nav-item"
+onclick="openAbsensi()">
+
+<div>▣</div>
+Absensi
+
+</div>
+
+<div class="nav-item active">
+
+<div>◷</div>
+Riwayat
+
+</div>
+
+<div class="nav-item"
+onclick="openProfile()">
+
+<div>●</div>
+Profil
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PROFILE
+===================================================== -->
+
+<section id="profileScreen" class="screen">
+
+<div class="profile-page">
+
+<div class="profile-header">
+
+<div class="profile-big-avatar">
+
+<img
+src="photo.jpg"
+alt="Foto Profil">
+
+</div>
+
+<h2>
+TRI RANGGA
+</h2>
+
+<p>
+Siswa XII RPL 1
+</p>
+
+</div>
+
+
+<div class="profile-box">
+
+<div class="profile-row">
+
+<span>Nama</span>
+
+<strong>
+TRI RANGGA
+</strong>
+
+</div>
+
+
+<div class="profile-row">
+
+<span>Kelas</span>
+
+<strong>
+XII RPL 1
+</strong>
+
+</div>
+
+
+<div class="profile-row">
+
+<span>Sekolah</span>
+
+<strong>
+SMK BM Sinar Husni
+</strong>
+
+</div>
+
+
+<div class="profile-row">
+
+<span>Kehadiran</span>
+
+<strong id="profilePercent">
+0%
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+class="logout"
+onclick="logout()">
+
+Keluar dari Akun
+
+</button>
+
+</div>
+
+
+<div class="bottom-nav">
+
+<div class="nav-item"
+onclick="openDashboard()">
+
+<div>⌂</div>
+Home
+
+</div>
+
+<div class="nav-item"
+onclick="openAbsensi()">
+
+<div>▣</div>
+Absensi
+
+</div>
+
+<div class="nav-item"
+onclick="openHistory()">
+
+<div>◷</div>
+Riwayat
+
+</div>
+
+<div class="nav-item active">
+
+<div>●</div>
+Profil
+
+</div>
+
+</div>
+
+</section>
+
+
+<div
+id="toast"
+class="toast">
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+PENGATURAN WAKTU ABSENSI
+===================================================== */
+
+const JAM_MULAI = 6;
+const MENIT_MULAI = 0;
+
+const JAM_SELESAI = 8;
+const MENIT_SELESAI = 0;
+
+
+/* =====================================================
+LOGIN
+===================================================== */
+
+function login(){
+
+    const username =
+    document.getElementById("username").value.trim();
+
+    const password =
+    document.getElementById("password").value.trim();
+
+
+    if(username === "" || password === ""){
+
+        showToast(
+        "Username dan password wajib diisi!"
+        );
+
+        return;
+    }
+
+
+    if(
+        username === "siswa" &&
+        password === "12345"
+    ){
+
+        hideAll();
+
+        document
+        .getElementById("dashboardScreen")
+        .classList.add("active");
+
+        updateDashboard();
+
+        showToast(
+        "Login berhasil!"
+        );
+
+    }else{
+
+        showToast(
+        "Username atau password salah!"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+HIDE ALL
+===================================================== */
+
+function hideAll(){
+
+    document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+
+        screen.classList.remove("active");
+
+    });
+
+}
+
+
+/* =====================================================
+DASHBOARD
+===================================================== */
+
+function openDashboard(){
+
+    hideAll();
+
+    document
+    .getElementById("dashboardScreen")
+    .classList.add("active");
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+ABSENSI
+===================================================== */
+
+function openAbsensi(){
+
+    hideAll();
+
+    document
+    .getElementById("absensiScreen")
+    .classList.add("active");
+
+    checkAttendance();
+
+}
+
+
+/* =====================================================
+RIWAYAT
+===================================================== */
+
+function openHistory(){
+
+    hideAll();
+
+    document
+    .getElementById("historyScreen")
+    .classList.add("active");
+
+    displayHistory();
+
+}
+
+
+/* =====================================================
+PROFILE
+===================================================== */
+
+function openProfile(){
+
+    hideAll();
+
+    document
+    .getElementById("profileScreen")
+    .classList.add("active");
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+STATUS TERPILIH
+===================================================== */
+
+let selectedAttendance = "Hadir";
+
+
+function selectAttendance(element,status){
+
+    if(!isAttendanceOpen()){
+
+        showToast(
+        "Batas waktu absensi sudah berakhir!"
+        );
+
+        return;
+    }
+
+
+    if(hasAttendanceToday()){
+
+        showToast(
+        "Kamu sudah melakukan absensi hari ini!"
+        );
+
+        return;
+    }
+
+
+    document
+    .querySelectorAll(".option")
+    .forEach(option => {
+
+        option.classList.remove("selected");
+
+    });
+
+
+    element.classList.add("selected");
+
+    selectedAttendance = status;
+
+}
+
+
+/* =====================================================
+CEK WAKTU
+===================================================== */
+
+function isAttendanceOpen(){
+
+    const now = new Date();
+
+    const currentMinutes =
+    now.getHours() * 60 +
+    now.getMinutes();
+
+
+    const startMinutes =
+    JAM_MULAI * 60 +
+    MENIT_MULAI;
+
+
+    const endMinutes =
+    JAM_SELESAI * 60 +
+    MENIT_SELESAI;
+
+
+    return (
+        currentMinutes >= startMinutes &&
+        currentMinutes < endMinutes
+    );
+
+}
+
+
+/* =====================================================
+CEK SUDAH ABSEN
+===================================================== */
+
+function hasAttendanceToday(){
+
+    const history =
+    JSON.parse(
+        localStorage.getItem(
+            "riwayatAbsensi"
+        ) || "[]"
+    );
+
+
+    const today =
+    new Date().toLocaleDateString(
+        "id-ID"
+    );
+
+
+    return history.some(
+        item => item.tanggal === today
+    );
+
+}
+
+
+/* =====================================================
+CHECK ABSENSI
+===================================================== */
+
+function checkAttendance(){
+
+    const btn =
+    document.getElementById("sendBtn");
+
+    const countdown =
+    document.getElementById("countdown");
+
+
+    if(hasAttendanceToday()){
+
+        btn.disabled = true;
+
+        btn.classList.add("disabled");
+
+        btn.innerText =
+        "✓ Sudah Absen Hari Ini";
+
+        countdown.innerText =
+        "Absensi hari ini sudah tersimpan.";
+
+        document
+        .querySelectorAll(".option")
+        .forEach(option => {
+
+            option.classList.add("locked");
+
+        });
+
+        return;
+    }
+
+
+    if(isAttendanceOpen()){
+
+        btn.disabled = false;
+
+        btn.classList.remove("disabled");
+
+        btn.innerText =
+        "➤  Kirim Absensi";
+
+        document
+        .querySelectorAll(".option")
+        .forEach(option => {
+
+            option.classList.remove("locked");
+
+        });
+
+        updateCountdown();
+
+    }else{
+
+        btn.disabled = true;
+
+        btn.classList.add("disabled");
+
+        btn.innerText =
+        "🔒 Absensi Ditutup";
+
+        document
+        .querySelectorAll(".option")
+        .forEach(option => {
+
+            option.classList.add("locked");
+
+        });
+
+
+        const now = new Date();
+
+        const current =
+        now.getHours() * 60 +
+        now.getMinutes();
+
+
+        const start =
+        JAM_MULAI * 60 +
+        MENIT_MULAI;
+
+
+        if(current < start){
+
+            countdown.innerText =
+            "🔒 Absensi belum dibuka.";
+
+        }else{
+
+            countdown.innerText =
+            "🔒 Batas waktu absensi telah berakhir.";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+COUNTDOWN
+===================================================== */
+
+function updateCountdown(){
+
+    if(!isAttendanceOpen()){
+
+        checkAttendance();
+
+        return;
+    }
+
+
+    const now = new Date();
+
+    const end = new Date();
+
+
+    end.setHours(
+        JAM_SELESAI,
+        MENIT_SELESAI,
+        0,
+        0
+    );
+
+
+    const difference =
+    end.getTime() -
+    now.getTime();
+
+
+    const totalSeconds =
+    Math.floor(
+        difference / 1000
+    );
+
+
+    const hours =
+    Math.floor(
+        totalSeconds / 3600
+    );
+
+
+    const minutes =
+    Math.floor(
+        (totalSeconds % 3600) / 60
+    );
+
+
+    const seconds =
+    totalSeconds % 60;
+
+
+    document
+    .getElementById("countdown")
+    .innerText =
+    "⏳ Sisa waktu: " +
+    String(hours).padStart(2,"0") +
+    ":" +
+    String(minutes).padStart(2,"0") +
+    ":" +
+    String(seconds).padStart(2,"0");
+
+}
+
+
+/* =====================================================
+KIRIM ABSENSI
+===================================================== */
+
+function sendAttendance(){
+
+    if(!isAttendanceOpen()){
+
+        showToast(
+        "Absensi hanya bisa dilakukan pukul 06:00 - 08:00!"
+        );
+
+        checkAttendance();
+
+        return;
+    }
+
+
+    if(hasAttendanceToday()){
+
+        showToast(
+        "Kamu sudah melakukan absensi hari ini!"
+        );
+
+        checkAttendance();
+
+        return;
+    }
+
+
+    const now = new Date();
+
+
+    const tanggal =
+    now.toLocaleDateString(
+        "id-ID"
+    );
+
+
+    const jam =
+    now.toLocaleTimeString(
+        "id-ID",
+        {
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit"
+        }
+    );
+
+
+    const data = {
+
+        tanggal: tanggal,
+
+        jam: jam,
+
+        status: selectedAttendance
+
+    };
+
+
+    let history =
+    JSON.parse(
+        localStorage.getItem(
+            "riwayatAbsensi"
+        ) || "[]"
+    );
+
+
+    history.unshift(data);
+
+
+    localStorage.setItem(
+        "riwayatAbsensi",
+        JSON.stringify(history)
+    );
+
+
+    document
+    .getElementById("success")
+    .classList.add("show");
+
+
+    document
+    .querySelector("#success h4")
+    .innerText =
+    "Absensi " +
+    selectedAttendance +
+    " berhasil!";
+
+
+    showToast(
+    "Absensi berhasil disimpan!"
+    );
+
+
+    checkAttendance();
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+TAMPILKAN RIWAYAT
+===================================================== */
+
+function displayHistory(){
+
+    const historyList =
+    document.getElementById(
+        "historyList"
+    );
+
+
+    const history =
+    JSON.parse(
+        localStorage.getItem(
+            "riwayatAbsensi"
+        ) || "[]"
+    );
+
+
+    updateSummary(history);
+
+
+    if(history.length === 0){
+
+        historyList.innerHTML = `
+
+        <div class="empty-history">
+
+            <div class="emoji">
+                📋
+            </div>
+
+            <h3>
+                Belum Ada Riwayat
+            </h3>
+
+            <p>
+                Data absensi yang kamu kirim
+                akan muncul di sini.
+            </p>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    historyList.innerHTML = "";
+
+
+    history.forEach(item => {
+
+
+        let icon = "✓";
+
+        let statusClass =
+        "status-hadir";
+
+
+        if(item.status === "Izin"){
+
+            icon = "◷";
+
+            statusClass =
+            "status-izin";
+
+        }
+
+
+        if(item.status === "Sakit"){
+
+            icon = "❤";
+
+            statusClass =
+            "status-sakit";
+
+        }
+
+
+        if(item.status === "Alpa"){
+
+            icon = "×";
+
+            statusClass =
+            "status-alpa";
+
+        }
+
+
+        const div =
+        document.createElement(
+            "div"
+        );
+
+
+        div.className =
+        "history-item";
+
+
+        div.innerHTML = `
+
+        <div class="history-icon ${statusClass}">
+            ${icon}
+        </div>
+
+        <div class="history-info">
+
+            <h4>
+                Absensi ${item.status}
+            </h4>
+
+            <p>
+                📅 ${item.tanggal}
+                &nbsp; • &nbsp;
+                🕐 ${item.jam}
+            </p>
+
+        </div>
+
+        <div class="history-status ${statusClass}">
+            ${item.status}
+        </div>
+
+        `;
+
+
+        historyList.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+REKAP
+===================================================== */
+
+function updateSummary(history){
+
+    let hadir = 0;
+    let izin = 0;
+    let sakit = 0;
+    let alpa = 0;
+
+
+    history.forEach(item => {
+
+        if(item.status === "Hadir"){
+            hadir++;
+        }
+
+        if(item.status === "Izin"){
+            izin++;
+        }
+
+        if(item.status === "Sakit"){
+            sakit++;
+        }
+
+        if(item.status === "Alpa"){
+            alpa++;
+        }
+
+    });
+
+
+    document
+    .getElementById("totalHadir")
+    .innerText = hadir;
+
+
+    document
+    .getElementById("totalIzin")
+    .innerText = izin;
+
+
+    document
+    .getElementById("totalSakit")
+    .innerText = sakit;
+
+
+    document
+    .getElementById("totalAlpa")
+    .innerText = alpa;
+
+}
+
+
+/* =====================================================
+HAPUS RIWAYAT
+===================================================== */
+
+function clearHistory(){
+
+    const history =
+    JSON.parse(
+        localStorage.getItem(
+            "riwayatAbsensi"
+        ) || "[]"
+    );
+
+
+    if(history.length === 0){
+
+        showToast(
+        "Riwayat masih kosong!"
+        );
+
+        return;
+    }
+
+
+    const yakin =
+    confirm(
+        "Yakin ingin menghapus semua riwayat?"
+    );
+
+
+    if(yakin){
+
+        localStorage.removeItem(
+            "riwayatAbsensi"
+        );
+
+
+        displayHistory();
+
+        updateDashboard();
+
+        checkAttendance();
+
+
+        showToast(
+        "Semua riwayat berhasil dihapus!"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+UPDATE DASHBOARD
+===================================================== */
+
+function updateDashboard(){
+
+    const history =
+    JSON.parse(
+        localStorage.getItem(
+            "riwayatAbsensi"
+        ) || "[]"
+    );
+
+
+    const total =
+    history.length;
+
+
+    const hadir =
+    history.filter(
+        item =>
+        item.status === "Hadir"
+    ).length;
+
+
+    let percent = 0;
+
+
+    if(total > 0){
+
+        percent =
+        Math.round(
+            (hadir / total) * 100
+        );
+
+    }
+
+
+    document
+    .getElementById(
+        "attendancePercent"
+    )
+    .innerText =
+    percent + "%";
+
+
+    document
+    .getElementById(
+        "profilePercent"
+    )
+    .innerText =
+    percent + "%";
+
+
+    document
+    .getElementById(
+        "progressBar"
+    )
+    .style.width =
+    percent + "%";
+
+
+    if(total === 0){
+
+        document
+        .getElementById(
+            "attendanceStatus"
+        )
+        .innerHTML =
+        "✓ Belum ada data absensi";
+
+    }
+
+    else if(percent >= 90){
+
+        document
+        .getElementById(
+            "attendanceStatus"
+        )
+        .innerHTML =
+        "✓ Sangat Baik";
+
+    }
+
+    else if(percent >= 75){
+
+        document
+        .getElementById(
+            "attendanceStatus"
+        )
+        .innerHTML =
+        "✓ Baik";
+
+    }
+
+    else{
+
+        document
+        .getElementById(
+            "attendanceStatus"
+        )
+        .innerHTML =
+        "⚠ Perlu Ditingkatkan";
+
+    }
+
+}
+
+
+/* =====================================================
+LOGOUT
+===================================================== */
+
+function logout(){
+
+    hideAll();
+
+    document
+    .getElementById(
+        "loginScreen"
+    )
+    .classList.add("active");
+
+
+    document
+    .getElementById(
+        "username"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "password"
+    )
+    .value = "";
+
+}
+
+
+/* =====================================================
+TOAST
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+    toast.innerText =
+    message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove(
+            "show"
+        );
+
+    },2500);
+
+}
+
+
+/* =====================================================
+TANGGAL
+===================================================== */
+
+function setDate(){
+
+    const date =
+    new Date();
+
+
+    const options = {
+
+        weekday:"long",
+
+        day:"2-digit",
+
+        month:"long",
+
+        year:"numeric"
+
+    };
+
+
+    document
+    .getElementById(
+        "tanggal"
+    )
+    .innerText =
+    date.toLocaleDateString(
+        "id-ID",
+        options
+    );
+
+}
+
+
+/* =====================================================
+UPDATE TIMER SETIAP DETIK
+===================================================== */
+
+setInterval(() => {
+
+    const absensiScreen =
+    document.getElementById(
+        "absensiScreen"
+    );
+
+
+    if(
+        absensiScreen.classList.contains(
+            "active"
+        )
+    ){
+
+        checkAttendance();
+
+    }
+
+},1000);
+
+
+/* =====================================================
+START
+===================================================== */
+
+setDate();
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
